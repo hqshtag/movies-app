@@ -1,0 +1,7 @@
+{
+    "endpoints": {
+        "baseURL": "https://yts.mx/api/v2",
+        "moviesList": "/list_movies.json",
+        "movie": "/movie_details.json"
+    }
+}
