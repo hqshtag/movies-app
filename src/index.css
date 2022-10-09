@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -11,3 +14,59 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+
+/*Pagination styles*/
+.pagination-wrapper {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  list-style-type: none;
+  margin-bottom: 20px;
+}
+.pagination-wrapper .paginationItem {
+  display: flex;
+}
+.pagination-wrapper .paginationItem button {
+  border: 1px solid #000;
+  background: transparent;
+  height: 34px;
+  width: 34px;
+  border-radius: 50%;
+  overflow: hidden;
+  color: #000;
+}
+.pagination-wrapper .paginationItem button:hover {
+  background-color: rgba(159, 159, 159, 0.295);
+  cursor: pointer;
+}
+.pagination-wrapper .paginationItem button:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+.pagination-wrapper .paginationItem[aria-current="page"] button {
+  background-color: rgba(159, 159, 159, 0.295);
+  font-weight: 700;
+  text-decoration: underline;
+}
+.pagination-wrapper .paginationItem .arrowButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pagination-wrapper .paginationItem .arrowButton svg {
+  width: 1em;
+  height: 1em;
+}
+.pagination-wrapper .dots {
+  line-height: 34px;
+  margin: 5px 10px;
+}
+.pagination-wrapper .paginationSelector {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  margin-left: 10px;
+}
+/*End pagination*/
