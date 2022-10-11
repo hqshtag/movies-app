@@ -10,3 +10,5 @@ A React application for consuming movies data from yts.mx API.
 - [x] Styled Components
 - [x] Typescript
 
+
+I have also used other dependencies, I have integrated React Router just for the fun of it.
