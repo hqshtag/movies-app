@@ -1,36 +1,30 @@
-import { unwrapResult } from '@reduxjs/toolkit';
 import React, { useEffect, useState } from 'react'
-import { useAppDispatch } from '../app/hooks';
-import { searchMovies } from '../features/movies/movieSlice';
+import { useAppDispatch, useAppSelector } from '../app/hooks';
+import { searchMovies, selectTopRatedMovies } from '../features/movies/movieSlice';
 import useDebounce from '../hooks/useDebounce';
+import Slideshow from '../organisms/Slideshow';
 import Topbar from '../organisms/Topbar'
-import { SearchQueryParams, YMovie } from '../services/api/types';
+import { SearchQueryParams } from '../services/api/types';
 
 
 type Props = {}
 
 const Home = (props: Props) => {
     const dispatch = useAppDispatch();
-
-    const [keyword, setKeyword] = useState('');
-    const [movies, setMovies] = useState<YMovie[]>([]);
-
+    const movies = useAppSelector(selectTopRatedMovies);
+    const [keyword, setKeyword] = useState('');    
     const debouncedKeyword = useDebounce(keyword, 800);
 
     useEffect(()=>{
         let qs: SearchQueryParams = {
             page: 1,
-            limit: 10,
+            limit: 20,
             with_rt_ratings: true
         }
         if(debouncedKeyword && debouncedKeyword.length >= 3){
             qs.query_term = debouncedKeyword;
         }
-        dispatch(searchMovies(qs)).then(unwrapResult).then(res => {
-            if(res && res?.length > 0){
-                setMovies(res);
-            }
-        })
+        dispatch(searchMovies(qs));
     }, [debouncedKeyword, dispatch])
 
 
@@ -42,7 +36,7 @@ const Home = (props: Props) => {
   return (
     <div>
         <Topbar handleSearchChange={handleTextChange} searchKeyWord={keyword} />
-
+        <Slideshow movies={movies} />
     </div>
   )
 }

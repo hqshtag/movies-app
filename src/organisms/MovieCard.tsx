@@ -1,5 +1,5 @@
 import React from 'react'
-import IMDbrating from '../atoms/IMDbrating'
+import {IMDbrating} from '../atoms/Ratings'
 import { YMovie } from '../services/api/types'
 
 type Props = {
