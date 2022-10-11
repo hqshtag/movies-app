@@ -15,3 +15,16 @@ export function buildSingleMovieEndpoint(queryParams: SingleMovieQueryParams){
     let {movie_id} = queryParams;
     return `${config.endpoints.movie}?movie_id=${movie_id}`;
 }
+
+export const checkImg = (url: string) => {
+  let http = new XMLHttpRequest();
+
+  try {
+    http.open("HEAD", url, false);
+    http.send();
+  } catch (err) {
+    return false;
+  }
+
+  return http.status !== 404;
+};

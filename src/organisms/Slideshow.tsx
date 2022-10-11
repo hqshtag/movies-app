@@ -14,9 +14,9 @@ interface ISlideshowProps {
 }
 
 const Slideshow = ({movies}: ISlideshowProps) => {
-  const rendMovies = movies.map((movie, index)=>{
+  const rendMovies = movies.map((movie)=>{
     return (
-      <SwiperSlide key={index}>
+      <SwiperSlide key={movie.imdb_code}>
        <SlideElement movie={movie} />
       </SwiperSlide>
 
@@ -31,8 +31,8 @@ const Slideshow = ({movies}: ISlideshowProps) => {
       pagination={{ clickable: true }}
       spaceBetween={16}
       slidesPerView={1}
-      onSlideChange={() => console.log('slide change')}
-      onSwiper={(swiper) => console.log(swiper)}
+     // onSlideChange={() => console.log('slide change')}
+     // onSwiper={(swiper) => console.log(swiper)}
       style={{top: "-5px"}}
     >
      {rendMovies}

@@ -19,7 +19,7 @@ const Link = styled.a`
 `
 
 const NavContainer = styled.div`
-  position: fixed;
+  position: absolute;
   width: 94vw;
   display: flex;
   justify-content: space-between;
