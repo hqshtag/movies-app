@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { searchMovies, selectTopRatedMovies } from '../features/movies/movieSlice';
 import useDebounce from '../hooks/useDebounce';
+import Featured from '../organisms/Featured';
 import Slideshow from '../organisms/Slideshow';
 import Topbar from '../organisms/Topbar'
 import { SearchQueryParams } from '../services/api/types';
@@ -37,6 +38,7 @@ const Home = (props: Props) => {
     <div>
         <Topbar handleSearchChange={handleTextChange} searchKeyWord={keyword} />
         <Slideshow movies={movies} />
+        <Featured />
     </div>
   )
 }

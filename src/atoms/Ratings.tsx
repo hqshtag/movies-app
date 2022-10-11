@@ -5,24 +5,26 @@ import RTomatoeImage from "../assets/RTomatoe.png";
 
 type Props = {
     rating: number
-}
+    color?: string
+  }
 
 
 interface IRCProps {
-  width: string
+  width: string,
+  color: string
 }
 
 const RatingContainer = styled.div<IRCProps>`
-  color: white;
+  color: ${props => props.color};
   width: ${props => props.width};
   display: flex;
   justify-content: space-between;
   align-items: center;
 `
 
-export const IMDbrating = ({rating}: Props) => {
+export const IMDbrating = ({rating, color = "white"}: Props) => {
   return (
-    <RatingContainer width="93px">
+    <RatingContainer width="93px" color={color}>
         <img src={IMBdImage} alt="" />
         {`${rating}/100`}
     </RatingContainer>
@@ -32,11 +34,11 @@ export const IMDbrating = ({rating}: Props) => {
 
 
 
-export const RottenTomatoesRating = ({rating}: Props) => {
+export const RottenTomatoesRating = ({rating, color = "white"}: Props) => {
   return (
-    <RatingContainer width="54px">
+    <RatingContainer width="54px" color={color}>
         <img src={RTomatoeImage} alt="" />
-        {`${rating}%`}
+        {`${rating.toFixed(1)}%`}
     </RatingContainer>
   )
 }
