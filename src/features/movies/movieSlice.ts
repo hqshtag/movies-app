@@ -85,11 +85,11 @@ const movieSlice = createSlice({
 });
 
 export const selectMovies = (state: RootState) => state.movies.data;
-export const selectTopRatedMovies = (state: RootState) => state.movies.data.filter(m=>m.rating > 6 && movieWithCoverAndBackround(m));
+export const selectTopRatedMovies = (state: RootState) => state.movies.data.filter(m=>m.rating > 6 && movieWithCoverAndBackroundAndYTtrailer(m));
 
 
-function movieWithCoverAndBackround(m: YMovie){
-  return m.background_image_original && m.large_cover_image
+function movieWithCoverAndBackroundAndYTtrailer(m: YMovie){
+  return m.background_image_original && m.large_cover_image && m.yt_trailer_code !== ''
 }
 
 export const {unselect, clearData} = movieSlice.actions

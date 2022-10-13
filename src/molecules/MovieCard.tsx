@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { IMDbrating, RottenTomatoesRating } from '../atoms/Ratings'
-import { Typography } from '../globalStyles'
+import { COLORS, Typography } from '../globalStyles'
 import { findTheMovieDB } from '../services'
 import { YMovie } from '../services/api/types'
 import { buildIMDBImageSrc } from '../services/utils'
@@ -15,9 +15,10 @@ type Props = {
 }
 
 const MCard = styled.div`
-  margin: 1.8rem;
+  margin: 1rem 1.8rem;
   width: 280px;
-  height: 530px;
+  height: 590px;
+  //outline: 1px solid red;
 `
 
 
@@ -38,6 +39,7 @@ const RatingsInline = styled.div`
 `
 
 const Title = Typography({ size: "lg", weight: "Medium", color: "black", align: "left" })
+const P = Typography({ size: "sm", weight: "Medium", color: COLORS.Gray[500], align: "left" })
 
 const MovieCard = ({ movie }: Props) => {
 
@@ -63,10 +65,12 @@ const MovieCard = ({ movie }: Props) => {
     <MCard>
       <MovieCover src={movie.large_cover_image} onError={(e) => imageErrorFullback(e)}/>
       <Title>{movie.title}</Title>
+      <P>{movie.language.toLocaleUpperCase() + ' ' + movie.year}</P>
       <RatingsInline>
         <IMDbrating rating={movie.rating} color={'black'} />
         <RottenTomatoesRating rating={movie.rating + 4.8} color="black" />
       </RatingsInline>
+      <P> {movie.genres.join(', ')} </P>
     </MCard>
   )
 }

@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { searchMovies, selectTopRatedMovies } from '../features/movies/movieSlice';
 import useDebounce from '../hooks/useDebounce';
 import Featured from '../organisms/Featured';
+import Modal from '../organisms/Modal';
 import Slideshow from '../organisms/Slideshow';
 import Topbar from '../organisms/Topbar'
 import { SearchQueryParams } from '../services/api/types';
@@ -16,6 +17,10 @@ const Home = (props: Props) => {
     const [keyword, setKeyword] = useState('');    
     const debouncedKeyword = useDebounce(keyword, 800);
 
+
+    const [showModal, setShowModal] = useState(false)
+    const [selectedVideoId, setSelectedVideoId] = useState('');
+
     useEffect(()=>{
         let qs: SearchQueryParams = {
             page: 1,
@@ -28,6 +33,20 @@ const Home = (props: Props) => {
         dispatch(searchMovies(qs));
     }, [debouncedKeyword, dispatch])
 
+    useEffect(()=>{
+
+        if(showModal){
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'scroll';
+        } 
+    }, [showModal])
+
+    useEffect(()=>{
+        if(!showModal && selectedVideoId !=='') setShowModal(true)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [selectedVideoId])
+
 
     const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         let value = e.target.value;
@@ -37,8 +56,9 @@ const Home = (props: Props) => {
   return (
     <div>
         <Topbar handleSearchChange={handleTextChange} searchKeyWord={keyword} />
-        <Slideshow movies={movies} />
+        <Slideshow movies={movies} selectVideoId={setSelectedVideoId} />
         <Featured />
+        {(showModal && selectedVideoId!=='') && <Modal videoId={selectedVideoId} setShowModal={setShowModal} />}
     </div>
   )
 }

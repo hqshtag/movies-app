@@ -12,6 +12,7 @@ import { IMDbrating,  RottenTomatoesRating } from "../atoms/Ratings";
 
 type Props = {
   movie: YMovie;
+  select: (value: React.SetStateAction<string>) => void;
 };
 
 const Title = Typography({ size: "5xl", weight: "Bold", align: "left" });
@@ -34,7 +35,10 @@ const RatingsInline = styled.div`
   justify-content: space-between;
 `
 
-const SlideElement = ({ movie }: Props) => {
+const SlideElement = ({ movie, select }: Props) => {
+  const watchTrailer  = () => {
+    select(movie.yt_trailer_code);
+  }
   return (
     <>
       <MovieCoverLayer image={movie.background_image}>
@@ -47,7 +51,7 @@ const SlideElement = ({ movie }: Props) => {
           <RottenTomatoesRating rating={movie.rating * 10 + 8} />
           </RatingsInline>
           <P>{movie.description_full.length <= 190 ? movie.description_full : movie.description_full.slice(0, 190)+" ..."}</P>
-          <Button color={COLORS.Red["500"]}>
+          <Button color={COLORS.Red["500"]} onClick={watchTrailer}>
             {" "}
             <PlayIcon fill="white" /> <P color="white"> Watch Trailer </P>{" "}
           </Button>

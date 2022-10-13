@@ -16,7 +16,7 @@ function App() {
   ];
   //relocate the user to landing page in any other case
   if (!knownPaths.includes(window.location.pathname)) window.location.replace("/");
-
+  document.body.style.overflow = 'scroll'
   return (
     <div className="App">
       <GlobalStyles />

@@ -37,3 +37,7 @@ export function buildTMDBSearchEndpoint(
 export function buildIMDBImageSrc (movie: TMDBMovie){
   return `${config.endpoints.TMDBImageBaseUrl}/original/${movie.poster_path}`
 }
+
+export function buildYoutubeURL (v: string){
+  return `https://www.youtube.com/watch?v=${v}`
+}
