@@ -1,4 +1,4 @@
-import React, { ReactEventHandler } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { IMDbrating, RottenTomatoesRating } from '../atoms/Ratings'
 import { Typography } from '../globalStyles'
@@ -6,7 +6,9 @@ import { findTheMovieDB } from '../services'
 import { YMovie } from '../services/api/types'
 import { buildIMDBImageSrc } from '../services/utils'
 import LoadingGif from "../assets/loading.gif"
-import { env } from 'process'
+import poster1 from "../assets/poster1.png";
+import poster2 from "../assets/poster2.png";
+import poster3 from "../assets/poster3.png";
 
 type Props = {
   movie: YMovie,
@@ -41,6 +43,7 @@ const MovieCard = ({ movie }: Props) => {
 
 
   const imageErrorFullback = async ({currentTarget}: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    const notFoundPosters = [poster1, poster2, poster3];
     currentTarget.src = LoadingGif
     const key = process.env.REACT_APP_TMDB_KEY;
     if(key){
@@ -50,7 +53,8 @@ const MovieCard = ({ movie }: Props) => {
       });
       if(res.total_results && res.total_results > 0 && res.results[0].poster_path){
         currentTarget.src = buildIMDBImageSrc(res.results[0]);
-      } 
+      } else currentTarget.src = notFoundPosters[Math.floor(Math.random()*3)] 
+
     }
     
   }
