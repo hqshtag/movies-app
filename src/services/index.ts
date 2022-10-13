@@ -1,6 +1,6 @@
 import { AxiosClient } from "./api/AxiosClient";
-import { SearchQueryParams, SingleMovieQueryParams, YTSMovieDetailsResponse, YTSMoviesResponse } from "./api/types";
-import { buildSearchEndpoint, buildSingleMovieEndpoint } from "./utils";
+import { TMDBSearchQueryParams, SearchQueryParams, SingleMovieQueryParams, TMDBFindResponse, YTSMovieDetailsResponse, YTSMoviesResponse } from "./api/types";
+import { buildTMDBSearchEndpoint, buildSearchEndpoint, buildSingleMovieEndpoint } from "./utils";
 
 export async function getMovies(queryParam: SearchQueryParams): Promise<YTSMoviesResponse> {
     const url = buildSearchEndpoint(queryParam);
@@ -15,3 +15,8 @@ export async function getMovieDetails(queryParams: SingleMovieQueryParams): Prom
     return res.data;
 }
 
+export async function findTheMovieDB(queryParams: TMDBSearchQueryParams): Promise<TMDBFindResponse> {
+    const url = buildTMDBSearchEndpoint(queryParams);
+    const res = await AxiosClient.get<TMDBFindResponse>(url);
+    return res.data;
+}

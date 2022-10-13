@@ -2,6 +2,8 @@
     "endpoints": {
         "baseURL": "https://yts.mx/api/v2",
         "moviesList": "/list_movies.json",
-        "movie": "/movie_details.json"
+        "movie": "/movie_details.json",
+        "TMDBBaseUrl": "https://api.themoviedb.org/3",
+        "TMDBImageBaseUrl": "https://image.tmdb.org/t/p/"
     }
 }

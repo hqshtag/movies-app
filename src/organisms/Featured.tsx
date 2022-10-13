@@ -4,7 +4,6 @@ import { useAppSelector } from "../app/hooks";
 import { selectMovies } from "../features/movies/movieSlice";
 import { Typography } from "../globalStyles";
 import MovieCard from "../molecules/MovieCard";
-import { checkImg } from "../services/utils";
 
 type Props = {};
 
@@ -28,12 +27,13 @@ const Featured = (props: Props) => {
   const movies = useAppSelector(selectMovies);
 
 
+
   const moviesRend = movies.map((m) => <MovieCard movie={m} key={m.imdb_code}/>);
   return (
     <>
       <Title style={{
         marginLeft: 36
-      }}>Feautured</Title>
+      }}>Feautured Movies</Title>
       <Container>{moviesRend}</Container>
     </>
   );
